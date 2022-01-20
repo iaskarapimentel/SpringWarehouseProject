@@ -1,0 +1,20 @@
+<div>
+    <h2>Welcome to Warehouse Management System</h2>
+
+    <p><a href="/">Home Page</a></p>
+    <p><a href="/listAllItems">List all items</a></p>
+
+    <h3 th:text="'Items in warehouse ' + ${warehouseId}" class="head3">Items by Warehouse</h3>
+    <h3 th:text="'(Count: ' + ${itemCount} + ')'" class="head4"></h3>
+
+    <table>
+        <tbody>
+        <tr th:each="item : ${items}">
+            <td th:text="${item.state}"></td>
+            <td th:text="${item.category}"></td>
+            <td th:text="${item.dateOfStock}"></td>
+            <td th:text="${item.warehouse}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>

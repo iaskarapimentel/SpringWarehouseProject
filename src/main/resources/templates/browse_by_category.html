@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Warehouse Management System</title>
+</head>
+<body>
+<div>
+    <div>
+        <h2>Welcome to Warehouse Management System</h2>
+
+        <p><a href="/">Home Page</a></p>
+
+        <div th:each="category : ${categories}" >
+        </div>
+
+        <h3>All Items List  <span th:text="'(Count: ' + ${itemCount} + ')'"></span></h3>
+
+        <table>
+            <tbody>
+            <tr th:each="category : ${categories}">
+                <a th:text="${category}" th:href="'warehouse/getItemsByCategory/' + ${category}"></a>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
