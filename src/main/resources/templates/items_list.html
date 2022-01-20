@@ -4,9 +4,7 @@
     <p><a href="/">Home Page</a></p>
 
     <div th:each="warehouse : ${warehouses}" >
-    <a th:text="'List items from warehouse ' + ${warehouse}" th:href="'/listItemsByWarehouse/' + ${warehouse}">
-
-    </a>
+    <a th:text="'List items from warehouse ' + ${warehouse}" th:href="'/listItemsByWarehouse/' + ${warehouse}"></a>
     </div>
 
     <h3>All Items List  <span th:text="'(Count: ' + ${itemCount} + ')'"></span></h3>

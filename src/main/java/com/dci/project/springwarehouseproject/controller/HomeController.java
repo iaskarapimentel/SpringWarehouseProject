@@ -78,4 +78,23 @@ public class HomeController {
     model.addAttribute("categoryCount", categoriesResponse.size());
     return "browse_by_category.html";
   }
+
+  @GetMapping("/itemsListByCategory/{category}")
+  public String getItemsByCategory(HttpServletRequest request, Model model, @PathVariable("category") String category) {
+
+    restTemplate = new RestTemplate();
+    //a rest call to our rest-endpoint "/warehouse/getCategories"
+    String categoriesResourceUrl = "http://localhost:" + request.getLocalPort() + "/warehouse/getItemsByCategory/" + category;
+
+    Set<String> categoriesResponse = restTemplate.getForObject(
+        categoriesResourceUrl,
+        Set.class
+    );
+
+    //add the response to the spring ui model.
+    model.addAttribute("categories", categoriesResponse);
+    model.addAttribute("categoryCount", categoriesResponse.size());
+    return "items_list_by_category.html";
+  }
+
 }

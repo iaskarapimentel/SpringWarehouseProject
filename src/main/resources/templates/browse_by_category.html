@@ -11,18 +11,11 @@
 
         <p><a href="/">Home Page</a></p>
 
-        <div th:each="category : ${categories}" >
+        <h3>All Categories List  <span th:text="'(Count: ' + ${categoryCount} + ')'"></span></h3>
+
+        <div th:each="category : ${categories}">
+            <a th:text="${category}" th:href="'/itemsListByCategory/' + ${category}"></a>
         </div>
-
-        <h3>All Items List  <span th:text="'(Count: ' + ${itemCount} + ')'"></span></h3>
-
-        <table>
-            <tbody>
-            <tr th:each="category : ${categories}">
-                <a th:text="${category}" th:href="'warehouse/getItemsByCategory/' + ${category}"></a>
-            </tr>
-            </tbody>
-        </table>
     </div>
 
 </body>
