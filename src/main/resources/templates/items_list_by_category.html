@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<p><a href="/">Home Page</a></p>
+<p><a href="/listAllItems">List all items</a></p>
+
+<h3 th:text="'Items by Category' + ${category}" class="head3"></h3>
+<h3 th:text="'(Count: ' + ${categoryCount} + ')'" class="head4"></h3>
+
+<table>
+    <tbody>
+    <tr th:each="category : ${categories}">
+        <td th:text="${category.state}"></td>
+        <td th:text="${category.dateOfStock}"></td>
+        <td th:text="${category.warehouse}"></td>
+    </tr>
+    </tbody>
+</table>
+
+
+</body>
+</html>
