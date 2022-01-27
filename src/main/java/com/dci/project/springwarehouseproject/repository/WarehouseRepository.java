@@ -182,4 +182,17 @@ public class WarehouseRepository {
       }
       return items;
     }
+
+//   Note: Your search result should have all the items whose 'state + category' contains the searched keyword.
+  public static List<Item> getSearchItem(String keyword) {
+
+    List<Item> searchedItem = new ArrayList<Item>();
+
+    for(Item item : getAllItems()){
+      if(item.toString().toLowerCase().contains(keyword.toLowerCase())){
+        searchedItem.add(item);
+      }
+    }
+    return searchedItem;
+  }
 }

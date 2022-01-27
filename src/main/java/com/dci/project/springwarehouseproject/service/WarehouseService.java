@@ -45,4 +45,10 @@ public class WarehouseService {
   public List<Item> getItemsByCategory(String category){
     return WarehouseRepository.getItemsByCategory(category);
   }
+
+//Call this method in the service layer from the controller.
+// Note: Your search result should have all the items whose 'state + category' contains the searched keyword.
+  public List<Item> getSearchItems(String keyword) {
+    return WarehouseRepository.getSearchItem(keyword);
+  }
 }

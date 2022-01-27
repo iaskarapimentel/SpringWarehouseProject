@@ -4,8 +4,7 @@ import com.dci.project.springwarehouseproject.model.Item;
 import org.springframework.boot.web.server.ConfigurableWebServerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
@@ -41,7 +40,7 @@ public class HomeController {
     model.addAttribute("warehouses", warehouseResponse);
     model.addAttribute("items", response);
     model.addAttribute("itemCount", response.size());
-    return "items_list";
+    return "items_list.html";
   }
 
   @GetMapping("/listItemsByWarehouse/{warehouseId}")
@@ -57,7 +56,7 @@ public class HomeController {
     model.addAttribute("warehouse", warehouseId);
     model.addAttribute("items", response);
     model.addAttribute("itemCount", response.size());
-    return "items_list_by_warehouse";
+    return "items_list_by_warehouse.html";
   }
 
 
@@ -97,4 +96,20 @@ public class HomeController {
     return "items_list_by_category.html";
   }
 
+  @GetMapping("/searchItemPage")
+  public String getSearchItemPage(HttpServletRequest request, Model model, String keyword){
+
+    restTemplate = new RestTemplate();
+    if(keyword != null) {
+      String searchItemsResourceUrl = "http://localhost:" + request.getLocalPort() + "/warehouse/searchItem/" + keyword;;
+      Set<String> searchItemResponse = restTemplate.getForObject(
+          searchItemsResourceUrl,
+          Set.class
+      );
+      model.addAttribute("searchItems", searchItemResponse);
+      model.addAttribute("searchItemsCount", searchItemResponse.size());
+    }
+
+    return "search_items_page";
+  }
 }
